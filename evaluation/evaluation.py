@@ -6,24 +6,23 @@ import argparse
 import numpy as np
 from tqdm import tqdm
 from collections import defaultdict
-from win32com.client import Dispatch
 from openpyxl.styles import PatternFill, Font
 
 
-def just_open(filename):
-    filename = os.path.abspath(filename)
-    xlApp = Dispatch("Excel.Application")
-    xlApp.Visible = False
-    xlApp.DisplayAlerts = False
-    xlApp.ScreenUpdating = False
-    try:
-        xlBook = xlApp.Workbooks.Open(Filename=filename, UpdateLinks=False, ReadOnly=False)
-        xlBook.Save()
-        xlBook.Close(SaveChanges=True)
-    except Exception as e:
-        print(f"An error occurred: {e}")
-    finally:
-        xlApp.Quit()
+# def just_open(filename):
+#     filename = os.path.abspath(filename)
+#     xlApp = Dispatch("Excel.Application")
+#     xlApp.Visible = False
+#     xlApp.DisplayAlerts = False
+#     xlApp.ScreenUpdating = False
+#     try:
+#         xlBook = xlApp.Workbooks.Open(Filename=filename, UpdateLinks=False, ReadOnly=False)
+#         xlBook.Save()
+#         xlBook.Close(SaveChanges=True)
+#     except Exception as e:
+#         print(f"An error occurred: {e}")
+#     finally:
+#         xlApp.Quit()
 
 
 def datetime_to_float(dt):
