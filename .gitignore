@@ -6,3 +6,4 @@ data/sample_data_200
 
 inference/outputs/*
 inference/log/*
+/data_copy
