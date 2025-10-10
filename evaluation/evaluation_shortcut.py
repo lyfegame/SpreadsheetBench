@@ -30,16 +30,14 @@ def parse_option():
     return opt
 
 
-def find_result_file(results_folder, data_id, run_number):
-    """Check if result file exists for this task ID and run number.
+def find_result_file(results_folder, data_id):
+    """Check if result file exists for this task ID.
 
-    Simply checks if any file contains the pattern: output_{data_id}_*_run_{run_number}.xlsx
+    Simply checks if any file contains the pattern: output_{data_id}_*.xlsx
     """
     # Check if file exists with this pattern
     for filename in os.listdir(results_folder):
-        if filename.startswith(f"output_{data_id}_") and filename.endswith(
-            f"_run_{run_number}.xlsx"
-        ):
+        if filename.startswith(f"output_{data_id}_") and filename.endswith(".xlsx"):
             return os.path.join(results_folder, filename)
     return None
 
@@ -60,7 +58,7 @@ def evaluation(opt):
         gt_path = f"{dataset_path}/spreadsheet/{data['id']}/{test_case_idx}_{data['id']}_answer.xlsx"
 
         # Check if output file exists
-        proc_path = find_result_file(opt.results_folder, data["id"], opt.run)
+        proc_path = find_result_file(opt.results_folder, data["id"])
 
         if proc_path is None:
             # Skip tasks without output files
